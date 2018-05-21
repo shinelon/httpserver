@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.shinelon.httpserver.service.AdLogic;
+import com.shinelon.httpserver.service.BizLogic;
 
 /**
  * BannerAdLogicImpl.java
@@ -16,7 +16,7 @@ import com.shinelon.httpserver.service.AdLogic;
  *         2018年5月18日
  */
 @Service
-public class BannerAdLogicImpl implements AdLogic {
+public class BannerAdLogicImpl implements BizLogic {
 
     private static final Logger logger = LoggerFactory.getLogger(BannerAdLogicImpl.class);
 

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.shinelon.httpserver.route.Route;
-import com.shinelon.httpserver.service.AdLogic;
+import com.shinelon.httpserver.service.BizLogic;
 
 /**
  * RouteConfig.java
@@ -29,14 +29,22 @@ public class RouteConfig {
 
     @Value("${netty.port}")
     private Integer port;
+    @Value("${netty.context-path}")
+    private String contextPath;
+    @Value("${netty.auth-path}")
+    private String auth;
 
     @Bean
     public Route initRoute() {
         Route route = new Route();
-        Map<String, AdLogic> initMap = new HashMap<>(8);
-        initMap.put("/login/**", applicationContext.getBean("loginAdLogicImpl", AdLogic.class));
-        initMap.put("/banner/**", applicationContext.getBean("bannerAdLogicImpl", AdLogic.class));
+        Map<String, BizLogic> initMap = new HashMap<>(8);
+        initMap.put("/login/**", applicationContext.getBean("loginAdLogicImpl", BizLogic.class));
+        initMap.put("/banner/**", applicationContext.getBean("bannerAdLogicImpl", BizLogic.class));
+        Route.setContextPath(contextPath);
+        Route.setPathAuth(auth);
         Route.initMap(initMap);
+        logger.debug("contextPath:{}", contextPath);
+        logger.debug("authPath:{}", contextPath + auth);
         logger.debug("route:{}", initMap);
         return route;
     }

@@ -21,6 +21,10 @@ public enum CodeEnum {
      */
     PARAMETER_REEOR("0002", "参数错误"),
     /***
+     * 权限错误
+     */
+    AUTH_REEOR("0003", "权限错误"),
+    /***
      * 系统异常
      */
     EXCEPTION("9999", "系统异常");

@@ -17,10 +17,10 @@ public class AdLogicTest extends AdApplicationTest {
 
     @Autowired
     @Qualifier("bannerAdLogicImpl")
-    private AdLogic banner;
+    private BizLogic banner;
     @Autowired
     @Qualifier("loginAdLogicImpl")
-    private AdLogic login;
+    private BizLogic login;
 
     @Test
     public void test() throws Exception {

@@ -9,7 +9,7 @@ import java.util.Map;
  *
  *         2018年5月18日
  */
-public interface AdLogic {
+public interface BizLogic {
     /***
      * 执行业务逻辑
      * 

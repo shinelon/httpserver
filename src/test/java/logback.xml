@@ -30,7 +30,7 @@
 <!--         <appender-ref ref="file—monitor"/> -->
         <appender-ref ref="STDOUT"/>
     </logger>
-    <logger name="com.credit.cloud.ad" level="DEBUG" additivity="false">
+    <logger name="com.shinelon.httpserver" level="DEBUG" additivity="false">
 <!--         <appender-ref ref="file—monitor"/> -->
         <appender-ref ref="STDOUT"/>
     </logger>
