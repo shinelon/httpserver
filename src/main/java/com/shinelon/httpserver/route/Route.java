@@ -25,6 +25,8 @@ public class Route {
 
     private static Map<String, BizLogic> routeMap = new HashMap<>(8);
 
+    private static AntPathMatcher apm = new AntPathMatcher();
+
     private static String contextPath;
 
     private static String pathAuth;
@@ -44,7 +46,6 @@ public class Route {
     }
 
     public static BizLogic lookFor(String path) {
-        AntPathMatcher apm = new AntPathMatcher();
         BizLogic ret = null;
         Optional<String> key = routeMap.keySet().stream().filter(e -> apm.match(e, path)).findFirst();
         ret = routeMap.get(key.orElse(null));
