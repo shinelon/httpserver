@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.shinelon.httpserver.config.ServerProperty;
-import com.shinelon.httpserver.handler.JwtSecurityHandler;
 import com.shinelon.httpserver.handler.ServerHandler;
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -51,8 +50,12 @@ public class HttpserverApplication {
                         public void initChannel(NioSocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
                             pipeline.addLast(new HttpServerCodec());
-                            ch.pipeline().addLast(new JwtSecurityHandler());
+                            // ch.pipeline().addLast(new JwtSecurityHandler());
                             ch.pipeline().addLast(new ServerHandler());
+                            // ch.pipeline().addLast(new HttpObjectAggregator(65536));
+                            // ch.pipeline().addLast(new ChunkedWriteHandler());
+                            // ch.pipeline().addLast(new FullRequestHandler());
+
                         }
                     });
             // 绑定端口 ,等待绑定成功
