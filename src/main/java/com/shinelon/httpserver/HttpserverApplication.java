@@ -65,7 +65,7 @@ public class HttpserverApplication {
         } finally {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
-            logger.info("adserver shutdown....");
+            logger.info("server shutdown....");
         }
     }
 
