@@ -28,7 +28,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<HttpRequest> {
     public void channelRead0(ChannelHandlerContext ctx, HttpRequest request) throws Exception {
         logger.debug("request:{}", request);
         String path = request.uri();
-        BizLogic adLogic = Route.lookFor(path);
+        BizLogic adLogic = Route.lookForByCache(path);
         Object ret = adLogic.execute(ChannelHandlerUtil.parseParam(request));
         ChannelHandlerUtil.writeJsonResult(ctx, ret, CodeEnum.SUCCESS);
     }

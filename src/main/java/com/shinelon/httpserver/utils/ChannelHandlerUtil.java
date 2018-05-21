@@ -22,10 +22,14 @@ import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.DefaultFullHttpResponse;
+import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpHeaderNames;
 import io.netty.handler.codec.http.HttpRequest;
 import io.netty.handler.codec.http.QueryStringDecoder;
+import io.netty.handler.codec.http.multipart.Attribute;
+import io.netty.handler.codec.http.multipart.HttpPostRequestDecoder;
+import io.netty.handler.codec.http.multipart.InterfaceHttpData;
 
 /**
  * ChannelHandlerUtil.java
@@ -53,6 +57,17 @@ public class ChannelHandlerUtil {
             if (value != null) {
                 params.put(next.getKey(), next.getValue().get(0));
             }
+        }
+        return params;
+    }
+
+    public static Map<String, String> parsePostParm(FullHttpRequest request) throws IOException {
+        HttpPostRequestDecoder decoder = new HttpPostRequestDecoder(request);
+        List<InterfaceHttpData> parmList = decoder.getBodyHttpDatas();
+        Map<String, String> params = new HashMap<>(16);
+        for (InterfaceHttpData parm : parmList) {
+            Attribute data = (Attribute) parm;
+            params.put(data.getName(), data.getValue());
         }
         return params;
     }
